@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from tqdm import trange
+import zipfile
 
 
 def load_data(filedir):
@@ -87,7 +88,20 @@ def save(data, v, save_dir):
     np.save(save_dir+'_v_flow.npy', v)
 
 
+def dezip(filedir):
+    zip_file = zipfile.ZipFile(filedir)
+    zip_list = zip_file.namelist()
+
+    parent_dir = filedir.split('/')[0]
+    for f in zip_list:
+        zip_file.extract(f, parent_dir)
+
+    zip_file.close()
+
+
 if __name__ == '__main__':
+    zip_dir = 'data/app_zone_rpc_hour_encrypted.zip'
+    dezip(zip_dir)
     data_dir = 'data/app_zone_rpc_hour_encrypted.csv'
     data = load_data(data_dir)
     split_seq(data, 192, 24, 24, 'data/flow/')

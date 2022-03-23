@@ -28,7 +28,7 @@ The four datasets (Electricity, Wind, ETT and App Flow) used in this paper can b
 * [Electricity](https://archive.ics.uci.edu/ml/datasets/ElectricityLoadDiagrams20112014)
 * [Wind](https://www.kaggle.com/sohier/30-years-of-european-wind-generation)
 * [ETT](https://github.com/zhouhaoyi/ETDataset)
-* [App Flow](./data/app_zone_rpc_hour_encrypted.csv)
+* [App Flow](https://github.com/alipay/Pyraformer/blob/master/data/app_zone_rpc_hour_encrypted.zip)
 
 The downloaded datasets can be put in the 'data' directory. For single step forecasting, we preprocess Electricity, Wind and App Flow using scripts preprocess_elect.py, preprocess_wind.py and preprocess_flow.py respectively. You can also download preprocessed data [here](https://drive.google.com/drive/folders/1-b9tR6Tgmx48smPMetzAhVSV7-95im3X?usp=sharing). and put them in the 'data' directory. The directory structure looks like:
 
