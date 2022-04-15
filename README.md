@@ -12,6 +12,7 @@ As demonstrated in Figure 2, we leverage a pyramidal graph to describe the tempo
 <center><b>Figure 2.</b> The Pyramidal Attention Mechanism.</center>
 
 ## Requirements
+* Ubuntu OS
 * Python 3.7
 * pytorch 1.8.0
 * CUDA 11.1
