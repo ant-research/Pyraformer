@@ -37,21 +37,15 @@ def get_q_k(input_size, window_size, stride, device):
     max_attn += window_size + 1
     mask = torch.zeros(full_length, max_attn, dtype=torch.int32, device=device) - 1
 
-    # 按照层内、下层、上层的顺序为序列中每个q找对应的k
-    # 第一层
     for i in range(input_size):
         mask[i, 0:window_size] = i + torch.arange(window_size) - window_size // 2
-        # 当window在序列右端时，把它给注释掉
         mask[i, mask[i] > input_size - 1] = -1
 
         mask[i, -1] = i // stride + input_size
         mask[i][mask[i] > third_start - 1] = third_start - 1
-    # 第二层
     for i in range(second_length):
         mask[input_size+i, 0:window_size] = input_size + i + torch.arange(window_size) - window_size // 2
-        # 当window在序列左端时，置为-1
         mask[input_size+i, mask[input_size+i] < input_size] = -1
-        # 当window在序列右端时，置为-1
         mask[input_size+i, mask[input_size+i] > third_start - 1] = -1
 
         if i < second_length - 1:
@@ -61,12 +55,9 @@ def get_q_k(input_size, window_size, stride, device):
 
         mask[input_size+i, -1] = i // stride + third_start
         mask[input_size+i, mask[input_size+i] > fourth_start - 1] = fourth_start - 1
-    # 第三层
     for i in range(third_length):
         mask[third_start+i, 0:window_size] = third_start + i + torch.arange(window_size) - window_size // 2
-        # 当window在序列左端时，置为-1
         mask[third_start+i, mask[third_start+i] < third_start] = -1
-        # 当window在序列右端时，置为-1
         mask[third_start+i, mask[third_start+i] > fourth_start - 1] = -1
 
         if i < third_length - 1:
@@ -76,12 +67,9 @@ def get_q_k(input_size, window_size, stride, device):
 
         mask[third_start+i, -1] = i // stride + fourth_start
         mask[third_start+i, mask[third_start+i] > full_length - 1] = full_length - 1
-    # 第四层
     for i in range(fourth_length):
         mask[fourth_start+i, 0:window_size] = fourth_start + i + torch.arange(window_size) - window_size // 2
-        # 当window在序列左端时，置为-1
         mask[fourth_start+i, mask[fourth_start+i] < fourth_start] = -1
-        # 当window在序列右端时，置为-1
         mask[fourth_start+i, mask[fourth_start+i] > full_length - 1] = -1
 
         if i < fourth_length - 1:
@@ -227,13 +215,13 @@ class GraphSelfAttention(nn.Module):
         k = k.view(bsz, seq_len, self.n_head, self.d_k)
         q = q.float().contiguous()
         k = k.float().contiguous()
-        # attn_weights.size(): (batch_size, L, num_heads, 11) 另外注意这里设置is_t1_diagonaled为False，用于q和k attention
-        attn_weights = graph_mm_tvm(q, k, self.q_k_mask, self.k_q_mask, False, 0)
+        # attn_weights.size(): (batch_size, L, num_heads, 11)
+        attn_weights = graph_mm_tvm(q, k, self.q_k_mask, self.k_q_mask, False, -1000000000)
         attn_weights = self.dropout_attn(F.softmax(attn_weights, dim=-1))
 
         v = v.view(bsz, seq_len, self.n_head, self.d_k)
         v = v.float().contiguous()
-        # 这里用于attention scores和v相乘，注意is_t1_diagonaled=True
+        # is_t1_diagonaled=True
         attn = graph_mm_tvm(attn_weights, v, self.q_k_mask, self.k_q_mask, True, 0)
         attn = attn.reshape(bsz, seq_len, self.n_head * self.d_k).contiguous()
         context = self.dropout_fc(self.fc(attn))

@@ -47,7 +47,7 @@ class PyramidalAttention(nn.Module):
         q = q.float().contiguous()
         k = k.float().contiguous()
         # attn_weights.size(): (batch_size, L, num_heads, 11)
-        attn_weights = graph_mm_tvm(q, k, self.q_k_mask, self.k_q_mask, False, 0)
+        attn_weights = graph_mm_tvm(q, k, self.q_k_mask, self.k_q_mask, False, -1000000000)
         attn_weights = self.dropout_attn(F.softmax(attn_weights, dim=-1))
 
         v = v.view(bsz, seq_len, self.n_head, self.d_k)
