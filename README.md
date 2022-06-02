@@ -123,7 +123,7 @@ If you have interests in business cooperation with us or using our time-series f
 
 如有业务合作意向或者想使用我们的时序预测产品，欢迎扫码加入我们的钉钉客户群。关于Pyraformer及其实际应用的简介可以参照https://mp.weixin.qq.com/s/kNvQOSEIv0itiqeN-EDKxw。
 
-![The network architecture of Pyraformer.](./img/dingtalk.png)
+![The network architecture of Pyraformer.](./img/dingtalk.png=250x)
 <center><b>Figure 3.</b> 钉钉客户群.</center>
 
 
