@@ -117,7 +117,7 @@ Below are evaluation examples:
 
 ## Contact
 
-For any questions w.r.t. Pyraformer, please submit them to Gubhub Issues.
+For any questions w.r.t. Pyraformer, please submit them to Github Issues.
 
 If you have interests in business cooperation with us or using our time-series forecasting products, please scan the QR code below and join our DingTalk customer group. A Chinese version introdution of Pyraformer and its practical applications can be found at https://mp.weixin.qq.com/s/kNvQOSEIv0itiqeN-EDKxw.
 
