@@ -11,6 +11,7 @@ As demonstrated in Figure 2, we leverage a pyramidal graph to describe the tempo
 ![The Pyramidal Attention Mechanism.](./img/Figure_2.png#center)
 <center><b>Figure 2.</b> The Pyramidal Attention Mechanism.</center>
 
+
 ## Requirements
 * Ubuntu OS
 * Python 3.7
@@ -102,6 +103,8 @@ Below are evaluation examples:
     python long_range_main.py -data ETTh1 -input_size 168 -predict_step 168 -n_head 6 -eval
     
     python single_step_main.py -data_path data/elect/ -dataset elect -eval
+    
+
 
 ## Citation
 
@@ -111,3 +114,17 @@ Below are evaluation examples:
     booktitle={International Conference on Learning Representations},
     year={2022}
     }
+
+## Contact
+
+For any questions w.r.t. Pyraformer, please submit them to Gubhub Issues.
+
+If you have interests in business cooperation with us or using our time-series forecasting products, please scan the QR code below and join our DingTalk customer group. A Chinese version introdution of Pyraformer and its practical applications can be found at https://mp.weixin.qq.com/s/kNvQOSEIv0itiqeN-EDKxw.
+
+如有业务合作意向或者想使用我们的时序预测产品，欢迎扫码加入我们的钉钉客户群。关于Pyraformer及其实际应用的简介可以参照https://mp.weixin.qq.com/s/kNvQOSEIv0itiqeN-EDKxw。
+
+![The network architecture of Pyraformer.](./img/dingtalk.png)
+<center><b>Figure 3.</b> 钉钉客户群.</center>
+
+
+
