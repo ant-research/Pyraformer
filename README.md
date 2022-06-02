@@ -121,8 +121,6 @@ For any questions w.r.t. Pyraformer, please submit them to Github Issues.
 
 If you have interests in business cooperation with us or using our time-series forecasting products, please scan the QR code below and join our DingTalk customer group. A Chinese version introdution of Pyraformer and its practical applications can be found at https://mp.weixin.qq.com/s/kNvQOSEIv0itiqeN-EDKxw.
 
-如有业务合作意向或者想使用我们的时序预测产品，欢迎扫码加入我们的钉钉客户群。关于Pyraformer及其实际应用的简介可以参照https://mp.weixin.qq.com/s/kNvQOSEIv0itiqeN-EDKxw。
-
 <img src="./img/dingtalk.png" alt="钉钉客户群" width="200"/>
 
 
